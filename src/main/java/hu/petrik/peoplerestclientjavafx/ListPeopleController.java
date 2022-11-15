@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 public class ListPeopleController {
 
     @FXML
@@ -23,6 +25,17 @@ public class ListPeopleController {
     private TableColumn<Person, String> emailCol;
     @FXML
     private TableColumn<Person, Integer> ageCol;
+
+    @FXML
+    private void initialize() {
+        try {
+            Response response = RequestHandler.get(App.BASE_URL);
+            String content = response.getContent();
+            System.out.println(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void insertClick(ActionEvent actionEvent) {
