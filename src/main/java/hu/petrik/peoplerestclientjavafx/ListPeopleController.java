@@ -66,6 +66,19 @@ public class ListPeopleController {
             stage.setTitle("Create People");
             stage.setScene(scene);
             stage.show();
+            insertButton.setDisable(true);
+            updateButton.setDisable(true);
+            deleteButton.setDisable(true);
+            stage.setOnCloseRequest(event -> {
+                insertButton.setDisable(false);
+                updateButton.setDisable(false);
+                deleteButton.setDisable(false);
+                try {
+                    loadPeopleFromServer();
+                } catch (IOException e) {
+                    error("An error occurred while communicating with the server");
+                }
+            });
         } catch (IOException e) {
             error("Could not load form", e.getMessage());
         }
@@ -100,7 +113,7 @@ public class ListPeopleController {
                 RequestHandler.delete(url);
                 loadPeopleFromServer();
             } catch (IOException e) {
-                error("An error occured while communicating with the server");
+                error("An error occurred while communicating with the server");
             }
         }
     }

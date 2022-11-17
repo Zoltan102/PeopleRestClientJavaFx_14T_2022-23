@@ -1,9 +1,14 @@
 package hu.petrik.peoplerestclientjavafx;
 
+import com.google.gson.annotations.Expose;
+
 public class Person {
     private int id;
+    @Expose
     private String name;
+    @Expose
     private String email;
+    @Expose
     private int age;
 
     public Person(int id, String name, String email, int age) {
