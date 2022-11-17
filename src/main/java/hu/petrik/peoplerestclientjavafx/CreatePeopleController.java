@@ -50,7 +50,8 @@ public class CreatePeopleController extends Controller {
                 emailField.setText("");
                 ageField.getValueFactory().setValue(30);
             } else {
-                // TODO: error
+                String content = response.getContent();
+                error(content);
             }
         } catch (IOException e) {
             e.printStackTrace();
