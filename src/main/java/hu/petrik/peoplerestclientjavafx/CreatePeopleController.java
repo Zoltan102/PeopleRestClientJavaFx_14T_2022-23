@@ -12,7 +12,7 @@ public class CreatePeopleController {
     @FXML
     private TextField emailField;
     @FXML
-    private Spinner<Integer> ageFIeld;
+    private Spinner<Integer> ageField;
     @FXML
     private Button submitButton;
 
