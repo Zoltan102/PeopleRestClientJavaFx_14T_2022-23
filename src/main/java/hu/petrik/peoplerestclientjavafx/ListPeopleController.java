@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -37,11 +40,7 @@ public class ListPeopleController {
             try {
                 loadPeopleFromServer();
             } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERROR!");
-                alert.setHeaderText("Couldn't get data from server");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+                error("Couldn't get data from server", e.getMessage());
                 Platform.exit();
             }
         });
@@ -60,6 +59,16 @@ public class ListPeopleController {
 
     @FXML
     public void insertClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("create-people-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+            Stage stage = new Stage();
+            stage.setTitle("Create People");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            error("Could not load form", e.getMessage());
+        }
     }
 
     @FXML
@@ -81,7 +90,7 @@ public class ListPeopleController {
         confirmation.setHeaderText(String.format("Are you sure you want to delete %s?", selected.getName()));
         Optional<ButtonType> optionalButtonType = confirmation.showAndWait();
         if (optionalButtonType.isEmpty()) {
-            System.out.println("Ismeretlen probléma történt");
+            System.err.println("Unknown error occurred");
             return;
         }
         ButtonType clickedButton = optionalButtonType.get();
@@ -91,10 +100,19 @@ public class ListPeopleController {
                 RequestHandler.delete(url);
                 loadPeopleFromServer();
             } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("An error occured while communicating with the server");
-                alert.show();
+                error("An error occured while communicating with the server");
             }
         }
+    }
+
+    private void error(String headerText) {
+        error(headerText, "");
+    }
+
+    private void error(String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 }
