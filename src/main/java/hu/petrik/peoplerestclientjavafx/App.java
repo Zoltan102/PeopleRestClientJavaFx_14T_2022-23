@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
-    public static final String BASE_URL = "https://retoolapi.dev/zJDoCG/people";
+    public static final String BASE_URL = "https://retoolapi.dev/1lSalJ/data";
 
     @Override
     public void start(Stage stage) throws IOException {

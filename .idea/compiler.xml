@@ -13,4 +13,9 @@
       <module name="PeopleRestClientJavaFx_14T_2022-23" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PeopleRestClientJavaFx_14T_2022-23" options="--add-exports java.base/sun.security.ssl=hu.petrik.peoplerestclientjavafx" />
+    </option>
+  </component>
 </project>

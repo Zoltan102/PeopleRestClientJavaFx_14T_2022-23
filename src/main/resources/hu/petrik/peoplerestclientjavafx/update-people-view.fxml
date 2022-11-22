@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="20.0" prefHeight="480.0" prefWidth="640.0" vgap="20.0" xmlns="http://javafx.com/javafx/null"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.peoplerestclientjavafx.UpdatePeopleController">
+    <columnConstraints>
+        <ColumnConstraints minWidth="50.0" prefWidth="50.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <children>
+        <Label text="Name:" GridPane.halignment="RIGHT"/>
+        <Label text="Email:" GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+        <Label text="Age:" GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+        <TextField fx:id="nameField" GridPane.columnIndex="1"/>
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Spinner fx:id="ageField" prefWidth="2000.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateClick" prefWidth="Infinity" text="Update"
+                GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+    </children>
+</GridPane>
